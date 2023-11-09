@@ -1,15 +1,24 @@
+/* eslint-disable */
+/* src/App.vue */
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <router-view :key="$route.fullPath" />
+    <!-- <SeriesList /> -->
+    <!-- <SeriesDetail /> -->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SeriesList from "./views/SeriesList.vue";
+import SeriesDetail from "./views/SeriesDetail.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // SeriesList
+    // SeriesList,
+    // SeriesDetail
   }
 }
 </script>
