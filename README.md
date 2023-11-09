@@ -1,24 +1,18 @@
 # vue-tv-maze
 
-## Project setup
-```
-npm install
-```
+## Author
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+> Bruno da Cunha Ferreira
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Project
 
-### Lints and fixes files
-```
-npm run lint
-```
+> vue-test-2
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Client
+
+Habitat
+
+### My Contacts
+
+- [Linkedin](https://www.linkedin.com/in/bruno-c-ferreira/)
+- [Site](https://brunosites.app.br/)
