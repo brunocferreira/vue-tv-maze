@@ -100,7 +100,6 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 import DOMPurify from 'dompurify';
 
-// TODO: Substitua pelo seu objeto de configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAVeStHTyFJNVR39eBBou3BKwVxFljnrJo",
   authDomain: "vue-tv-maze.firebaseapp.com",
@@ -110,19 +109,17 @@ const firebaseConfig = {
   appId: "1:104487766585:web:2b5cab196216794a5bdbe8"
 };
 
-// Inicialize o Firebase
 let app = null;
 if (firebaseConfig != null) {
   app = initializeApp(firebaseConfig);
 }
 
-// Inicialize o Firestore
 const db = app == null ? null :getFirestore();
 
 export default {
   props: {
     id: {
-      type: String, // ou Number, dependendo do que você espera que seja o id
+      type: String,
       required: true
     }
   },
@@ -130,7 +127,6 @@ export default {
     console.log('Autor :>> ', "Bruno da Cunha Ferreira");
     console.log('linkedin :>> ', "https://www.linkedin.com/in/bruno-c-ferreira/");
     return {
-      // id: this.$route.params.id,
       show: null,
       newComment: '',
       comments: [],
@@ -192,7 +188,7 @@ export default {
         return sanitizedEpisode;
       });
     },
-    sanitizeCast() { // Adicionado
+    sanitizeCast() {
       this.sanitizedCast = this.show._embedded.cast.map(member => {
         const sanitizedMember = { ...member };
         sanitizedMember.character.name = DOMPurify.sanitize(member.character.name);

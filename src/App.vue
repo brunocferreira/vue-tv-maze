@@ -4,22 +4,13 @@
 <template>
   <div id="app">
     <router-view :key="$route.fullPath" />
-    <!-- <SeriesList /> -->
-    <!-- <SeriesDetail /> -->
   </div>
 </template>
 
 <script>
-import SeriesList from "./views/SeriesList.vue";
-import SeriesDetail from "./views/SeriesDetail.vue";
 
 export default {
-  name: 'App',
-  components: {
-    // SeriesList
-    // SeriesList,
-    // SeriesDetail
-  }
+  name: 'App'
 }
 </script>
 
