@@ -12,6 +12,9 @@ jobs:
     steps:
       # 1. Faz checkout do seu código
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       # 2. Configura o Node.js
       - name: Setup Node.js
@@ -45,7 +48,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # branch de destino
           publish_branch: gh-pages
-
-          # ↓ Adicione estes dois campos para o git não reclamar de user
-          user_name: 'brunocferreira'
-          user_email: 'brunocferreir@gmail.com'
