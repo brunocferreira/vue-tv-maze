@@ -21,7 +21,7 @@ jobs:
 
       # 3. Instala dependências
       - name: Install dependencies
-        run: npm run build
+        run: npm ci
 
       # 4. Build do Vue (injeta as variáveis de ambiente)
       - name: Build
