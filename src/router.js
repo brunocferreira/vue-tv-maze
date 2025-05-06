@@ -18,7 +18,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/vue-tv-maze/'), // ← base path igual ao publicPath
   routes
 });
 
