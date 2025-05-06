@@ -2,31 +2,30 @@ name: Build and Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Faz checkout do seu código
+      # 1) Faz checkout do seu código e mantém o GITHUB_TOKEN disponível
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          persist-credentials: false
+          # persist-credentials: true  ← este é o padrão, então você pode simplesmente remover esta linha
 
-      # 2. Configura o Node.js
+      # 2) Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3. Instala dependências
+      # 3) Instala dependências
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build do Vue (injeta as variáveis de ambiente)
+      # 4) Build (com suas vars)
       - name: Build
         env:
           VUE_APP_API_KEY: ${{ secrets.VUE_APP_API_KEY }}
@@ -38,13 +37,10 @@ jobs:
           VUE_APP_MEASUREMENT_ID: ${{ secrets.VUE_APP_MEASUREMENT_ID }}
         run: npm run build
 
-      # 5. Publica o conteúdo de ./dist no GitHub Pages
+      # 5) Deploy para gh-pages, usando o mesmo GITHUB_TOKEN
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # diretório que será publicado
           publish_dir: ./dist
-          # token para push
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # branch de destino
           publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
