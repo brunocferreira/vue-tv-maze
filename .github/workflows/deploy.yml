@@ -39,6 +39,13 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # diretório que será publicado
           publish_dir: ./dist
+          # token para push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # branch de destino
           publish_branch: gh-pages
+
+          # ↓ Adicione estes dois campos para o git não reclamar de user
+          user_name: 'brunocferreira'
+          user_email: 'brunocferreir@gmail.com'
