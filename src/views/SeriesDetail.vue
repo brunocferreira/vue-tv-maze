@@ -74,6 +74,7 @@
             v-model="newComment"
             placeholder="Adicione um comentário..."
             class="comment-field"
+            @keydown.enter.prevent="addComment"
           ></textarea>
           <button
             type="submit"
@@ -101,12 +102,13 @@ import { getFirestore, collection, addDoc, getDocs, query, where } from 'firebas
 import DOMPurify from 'dompurify';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAVeStHTyFJNVR39eBBou3BKwVxFljnrJo",
-  authDomain: "vue-tv-maze.firebaseapp.com",
-  projectId: "vue-tv-maze",
-  storageBucket: "vue-tv-maze.appspot.com",
-  messagingSenderId: "104487766585",
-  appId: "1:104487766585:web:2b5cab196216794a5bdbe8"
+  apiKey: process.env.VUE_APP_API_KEY,
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_APP_ID,
+  measurementId: process.env.VUE_APP_MEASUREMENT_ID
 };
 
 let app = null;
@@ -165,12 +167,17 @@ export default {
   },
   methods: {
     async addComment() {
-      const comment = {
-        text: this.newComment,
-        showId: this.show.id
-      };
+      const comment = { text: this.newComment };
+      if (this.show && this.show.id != null) {
+        comment.showId = this.show.id;
+      }
       if (db) {
-        await addDoc(collection(db, 'comments'), comment);
+        try {
+          await addDoc(collection(db, 'comments'), comment);
+          await this.loadComments();
+        } catch (e) {
+          console.error("Erro ao gravar comentário:", e.code, e.message);
+        }
       }
       this.newComment = '';
     },
