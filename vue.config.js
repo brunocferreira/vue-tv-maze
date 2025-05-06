@@ -1,7 +1,7 @@
 // vue.config.js
 module.exports = {
-  transpileDependencies: true,
-  publicPath: '/vue-tv-maze/',
+  publicPath: './',
   outputDir: 'docs',
-  assetsDir: 'assets'
+  assetsDir: 'assets',
+  transpileDependencies: true
 };
